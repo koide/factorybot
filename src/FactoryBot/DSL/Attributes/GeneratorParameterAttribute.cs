@@ -19,7 +19,7 @@ namespace FactoryBot.DSL.Attributes
         {
             if (Factory == null) return Value;
 
-            var factoryMethod = method.DeclaringType.GetMethod(Factory, BindingFlags.NonPublic | BindingFlags.Static);
+            var factoryMethod = method.DeclaringType?.GetMethod(Factory, BindingFlags.NonPublic | BindingFlags.Static);
             if (factoryMethod?.GetParameters()?.Any() ?? true)
             {
                 throw new MissingMethodException($"Unable to find suitable factory method '{Factory}' in class {method.DeclaringType}. Factory method should be static and parameterless");

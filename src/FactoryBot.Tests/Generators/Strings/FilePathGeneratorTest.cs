@@ -9,7 +9,7 @@ namespace FactoryBot.Tests.Generators.Strings
     [TestFixture]
     public class FilePathGeneratorTest : GeneratorTestKit
     {
-        private string _folderToRemove;
+        private string _folderToRemove = default!;
 
         [TearDown]
         public void Terminate()
@@ -36,7 +36,7 @@ namespace FactoryBot.Tests.Generators.Strings
         {
             var folder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             AssertGeneratorValue<string>(
-                x => new AllTypesModel { String = x.Strings.Filename(folder, false) },
+                x => new AllTypesModel { String = x.Strings.Filename(folder!, false) },
                 x =>
                     {
                         AssertFilePathValidButNotExisting(x);
@@ -48,7 +48,7 @@ namespace FactoryBot.Tests.Generators.Strings
         public void Filename_ExistingFileFromEverywhere_ReturnsFilename()
         {
             AssertGeneratorValue<string>(
-                x => new AllTypesModel { String = x.Strings.Filename(null, true) },
+                x => new AllTypesModel { String = x.Strings.Filename(null!, true) },
                 AssertFileExists);
         }
 

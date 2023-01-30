@@ -33,7 +33,7 @@ namespace FactoryBot.DSL.Attributes
             // todo: check if method have generic param, don't throw out of range exception
             var itemType = method.GetGenericArguments()[GenericParameterIndex]; 
             var generatorType = typeof(UsingGenerator<>).MakeGenericType(itemType);
-            return (IGenerator)Activator.CreateInstance(generatorType);
+            return (IGenerator)Activator.CreateInstance(generatorType)!;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace FactoryBot.Tests.Models
 
         public bool Boolean { get; set; }
 
-        public string String { get; set; }
+        public string String { get; set; } = default!;
 
         public DateTime DateTime { get; set; }
         public TimeSpan TimeSpan { get; set; }

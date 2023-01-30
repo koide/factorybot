@@ -17,7 +17,7 @@ namespace FactoryBot.Generators.Collections
 
         public object Next()
         {
-            var list = (IList)Activator.CreateInstance(_listType);
+            var list = (IList)Activator.CreateInstance(_listType)!;
             foreach (var generator in _generators)
             {
                 list.Add(generator.Next());

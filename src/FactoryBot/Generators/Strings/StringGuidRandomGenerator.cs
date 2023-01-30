@@ -6,6 +6,6 @@ namespace FactoryBot.Generators.Strings
     {
         private readonly GuidRandomGenerator _guidGenerator = new GuidRandomGenerator();
 
-        protected override string NextInternal() => _guidGenerator.Next().ToString();
+        protected override string NextInternal() => _guidGenerator.Next().ToString()!;
     }
 }

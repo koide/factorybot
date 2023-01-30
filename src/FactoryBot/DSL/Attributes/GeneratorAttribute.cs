@@ -58,16 +58,16 @@ namespace FactoryBot.DSL.Attributes
             }            
         }
 
-        private static object ChooseParameter(ParameterInfo parameterInfo, IDictionary<string, object> parameters)
+        private static object? ChooseParameter(ParameterInfo parameterInfo, IDictionary<string, object> parameters)
         {
-            return parameters.TryGetValue(parameterInfo.Name, out object result) ? result : parameterInfo.DefaultValue;
+            return parameters.TryGetValue(parameterInfo.Name ?? string.Empty, out object? result) ? result : parameterInfo.DefaultValue;
         }
 
         private static bool IsSuitableConstructor(ConstructorInfo constructor, ICollection<string> parameterNames)
         {
             var parameters = constructor.GetParameters();
             return parameters.Length >= parameterNames.Count 
-                && parameters.All(parameter => parameterNames.Contains(parameter.Name) || parameter.HasDefaultValue);
+                && parameters.All(parameter => parameterNames.Contains(parameter?.Name ?? string.Empty) || (parameter?.HasDefaultValue ?? false));
         }
     }
 }

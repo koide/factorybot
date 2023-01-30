@@ -16,7 +16,7 @@ namespace FactoryBot.ExpressionParser
         public static ConstructorDefinition CreateConstructorGenerator(NewExpression newExpr)
         {
             return new ConstructorDefinition(
-                newExpr.Constructor,
+                newExpr.Constructor!,
                 newExpr.Arguments.Select(ParseGeneratorVariable).ToArray());
         }
 
@@ -40,7 +40,7 @@ namespace FactoryBot.ExpressionParser
                     var parameter = methodParameters[i];
                     var argumentExpr = methodCallExpr.Arguments[i];
 
-                    generatorParamenters[parameter.Name] = parameter.IsDefined(typeof(ItemGeneratorAttribute))
+                    generatorParamenters[parameter.Name!] = parameter.IsDefined(typeof(ItemGeneratorAttribute))
                                                                ? ParseGeneratorVariable(argumentExpr)
                                                                : EvaluateExpression(argumentExpr);
                 }
@@ -75,7 +75,7 @@ namespace FactoryBot.ExpressionParser
         {
             try 
             {
-                return Expression.Lambda(expr).Compile().DynamicInvoke();
+                return Expression.Lambda(expr).Compile().DynamicInvoke()!;
             }
             catch (InvalidOperationException ex)
             {
@@ -126,7 +126,7 @@ namespace FactoryBot.ExpressionParser
             MemberMemberBinding memberMemberBinding)
         {
             var defaultConstructor = property.PropertyType.GetConstructor(new Type[0]);
-            var constructor = new ConstructorDefinition(defaultConstructor, new IGenerator[0]);
+            var constructor = new ConstructorDefinition(defaultConstructor!, new IGenerator[0]);
             var botConfiguration = new BotConfiguration(property.PropertyType, constructor);
             foreach (var nestedBinding in memberMemberBinding.Bindings)
             {

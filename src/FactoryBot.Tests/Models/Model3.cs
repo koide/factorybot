@@ -4,6 +4,6 @@ namespace FactoryBot.Tests.Models
     {
         public int Number { get; set; }
 
-        public Model1 Nested { get; set; }
+        public Model1 Nested { get; set; } = default!;
     }
 }

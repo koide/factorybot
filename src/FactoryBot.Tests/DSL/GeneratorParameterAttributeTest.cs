@@ -62,11 +62,11 @@ namespace FactoryBot.Tests.DSL
             Assert.Throws<MissingMethodException>(() => attr.GetParameterValue(GetDSLMethod()));
         }
 
-        private static MethodInfo GetDSLMethod() => typeof(TestDSL).GetMethod(nameof(TestDSL.GetTestGenerator));
+        private static MethodInfo GetDSLMethod() => typeof(TestDSL).GetMethod(nameof(TestDSL.GetTestGenerator))!;
 
         private class TestDSL
         {
-            public object GetTestGenerator() => default;
+            public object GetTestGenerator() => default!;
 
 #pragma warning disable IDE0051 // Remove unused private members
             private int InstanceFactory() => 25;

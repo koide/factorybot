@@ -17,7 +17,7 @@ namespace FactoryBot.Tests.Generators.Strings
 
             var host = generator.Next().ToString();
 
-            Assert.That(host.Split('.'), Has.Length.EqualTo(2));
+            Assert.That(host?.Split('.'), Has.Length.EqualTo(2));
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace FactoryBot.Tests.Generators.Strings
 
             var host = generator.Next().ToString();
 
-            Assert.That(host.Split('.'), Has.Length.EqualTo(6));
+            Assert.That(host?.Split('.'), Has.Length.EqualTo(6));
         }
     }
 }

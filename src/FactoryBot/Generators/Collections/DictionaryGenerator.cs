@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FactoryBot.Generators.Collections
 {
-    public class DictionaryGenerator<TKey, TValue> : BaseCollectionGenerator<KeyValuePair<TKey, TValue>, Dictionary<TKey, TValue>>
+    public class DictionaryGenerator<TKey, TValue> : BaseCollectionGenerator<KeyValuePair<TKey, TValue>, Dictionary<TKey, TValue>> where TKey : notnull
     {
         public DictionaryGenerator(int minElements, int maxElements, IGenerator keyGenerator, IGenerator valueGenerator) 
             : base(minElements, maxElements, new KeyValuePairGenerator(keyGenerator, valueGenerator))

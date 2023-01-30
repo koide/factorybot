@@ -11,7 +11,7 @@ namespace FactoryBot.Tests
         public static string GetResourceContentWithoutLineBreaks(string resourceName)
         {
             var assembly = Assembly.GetAssembly(typeof(IGenerator));
-            var stream = assembly.GetManifestResourceStream(resourceName);
+            var stream = assembly?.GetManifestResourceStream(resourceName);
             if (stream == null)
             {
                 throw new IOException($"Resource {resourceName} has not been found in assembly {assembly}.");

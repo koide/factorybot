@@ -107,17 +107,17 @@ namespace FactoryBot.Tests.DSL
 
         private class TestDSL
         {
-            public object GetTestGenerator() => default;
+            public object GetTestGenerator() => default!;
 
 #pragma warning disable IDE0060 // Remove unused parameter
 
-            public object GetTestGenerator(int length, string source) => default;
+            public object GetTestGenerator(int length, string source) => default!;
 
-            public object GetTestGenericGenerator<T1, T2>() => default;
+            public object GetTestGenericGenerator<T1, T2>() => default!;
 
-            public object GetTestGenericGenerator<T1, T2>(T1 value1, T2 value2) => default;
+            public object GetTestGenericGenerator<T1, T2>(T1 value1, T2 value2) => default!;
 
-            public object GetTestGeneratorWithDefaultParameters(int numberInteger, string text2) => default;
+            public object GetTestGeneratorWithDefaultParameters(int numberInteger, string text2) => default!;
 
 #pragma warning restore IDE0060 // Remove unused parameter
         }

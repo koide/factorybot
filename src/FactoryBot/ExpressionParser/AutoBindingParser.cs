@@ -116,8 +116,8 @@ namespace FactoryBot.ExpressionParser
             if (type.IsArray)
             {
                 var itemType = type.GetElementType();
-                var itemGenerator = GetPropertyGenerator(itemType, parents);
-                return CreateCollectionGenerator(typeof(ArrayGenerator<>), new[] { itemType }, new[] { itemGenerator });
+                var itemGenerator = GetPropertyGenerator(itemType!, parents);
+                return CreateCollectionGenerator(typeof(ArrayGenerator<>), new[] { itemType! }, new[] { itemGenerator });
             }
 
             if (type.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IDictionary<,>)))
@@ -141,7 +141,7 @@ namespace FactoryBot.ExpressionParser
 
             if (type.IsEnum)
             {
-                return (IGenerator)Activator.CreateInstance(typeof(EnumRandomGenerator<>).MakeGenericType(type));
+                return (IGenerator)Activator.CreateInstance(typeof(EnumRandomGenerator<>).MakeGenericType(type))!;
             }
 
             if (!type.IsPrimitive)
@@ -155,7 +155,7 @@ namespace FactoryBot.ExpressionParser
         private static IGenerator CreateCollectionGenerator(Type generatorType, Type[] itemType, IGenerator[] itemGenerator)
         {
             return (IGenerator)generatorType.MakeGenericType(itemType)
-                        .GetConstructor(new[] { typeof(int), typeof(int) }.Concat(itemGenerator.Select(_ => typeof(IGenerator))).ToArray())
+                        .GetConstructor(new[] { typeof(int), typeof(int) }.Concat(itemGenerator.Select(_ => typeof(IGenerator))).ToArray())!
                         .Invoke(new object[] { COLLECTION_MIN_LENGTH, COLLECTION_MAX_LENGTH }.Concat(itemGenerator).ToArray());
         }
     }

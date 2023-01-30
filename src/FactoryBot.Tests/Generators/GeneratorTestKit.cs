@@ -89,7 +89,7 @@ namespace FactoryBot.Tests.Generators
             {
                 var model = Bot.Build<AllTypesModel>();
                 var value = property.GetValue(model);
-                assert(value);
+                assert(value!);
             }
         }
 

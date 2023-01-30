@@ -166,7 +166,7 @@ namespace FactoryBot.DSL.Builders
         /// <param name="valueGenerator">Value generator</param>
         /// <returns>Dictionary of random key value pairs</returns>
         [Generator(typeof(DictionaryGenerator<,>))]
-        public Dictionary<TKey, TValue> Dictionary<TKey, TValue>(int minElements, int maxElements, [ItemGenerator] TKey keyGenerator, [ItemGenerator] TValue valueGenerator) => new Dictionary<TKey, TValue>();
+        public Dictionary<TKey, TValue> Dictionary<TKey, TValue>(int minElements, int maxElements, [ItemGenerator] TKey keyGenerator, [ItemGenerator] TValue valueGenerator) where TKey : notnull => new Dictionary<TKey, TValue>();
 
         /// <summary>
         /// Generates dictionary of random key value pairs. The same as Dictionary(minElements, maxElements, Use&lt;TKey&gt;(), Use&lt;TValue&gt;()).
@@ -179,7 +179,7 @@ namespace FactoryBot.DSL.Builders
         [Generator(typeof(DictionaryGenerator<,>))]
         [UseDefaultItemGenerator("keyGenerator")]
         [UseDefaultItemGenerator("valueGenerator", 1)]
-        public Dictionary<TKey, TValue> Dictionary<TKey, TValue>(int minElements, int maxElements) => new Dictionary<TKey, TValue>();
+        public Dictionary<TKey, TValue> Dictionary<TKey, TValue>(int minElements, int maxElements) where TKey : notnull => new Dictionary<TKey, TValue>();
 
 #pragma warning restore IDE0060 // Remove unused parameter
     }

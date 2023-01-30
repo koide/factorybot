@@ -2,6 +2,6 @@
 {
     public class ModelWithCircularDependency3
     {
-        public ModelWithCircularDependency1 Model { get; set; }
+        public ModelWithCircularDependency1 Model { get; set; } = default!;
     }
 }

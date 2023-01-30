@@ -39,7 +39,7 @@ namespace FactoryBot.Generators.Strings
                     // file contains a single line
                     reader.DiscardBufferedData();
                     reader.BaseStream.Seek(0, SeekOrigin.Begin);
-                    return reader.ReadLine();
+                    return reader.ReadLine()!;
                 }
 
                 result = reader.ReadLine(); // skipping the first read line because it could be incomplete

@@ -188,13 +188,13 @@ namespace FactoryBot.Tests.BotTests
         {
             Bot.DefineAuto<AllTypesModel>();
             
-            T actualValue = default;
+            T actualValue = default!;
             for (var i = 0; i < 3; i++)
             {
                 var model = Bot.Build<AllTypesModel>();
                 actualValue = getActual(model);
 
-                if (primitive && actualValue.Equals(default))
+                if (primitive && actualValue!.Equals(default))
                 {
                     continue;
                 }
