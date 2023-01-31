@@ -11,7 +11,7 @@ jobs:
     
     steps:
     - name: Get version
-      run: version=$(echo "$GITHUB_REF" | sed 's/^refs\/tags\/v//g');echo "name=VERSION::$version" >> $GITHUB_ENV
+      run: version=$(echo "$GITHUB_REF" | sed 's/^refs\/tags\/v//g');echo "version=$version" >> $GITHUB_ENV
       env:
         GITHUB_REF: ${{ github.ref }}
 
@@ -32,7 +32,7 @@ jobs:
       working-directory: ./src
 
     - name: Pack NuGet package
-      run: dotnet pack -p:PackageVersion=${{ env.name }} --configuration Release --no-build
+      run: dotnet pack -p:PackageVersion=${{ env.version }} --configuration Release --no-build
       working-directory: ./src/FactoryBot    
 
     - name: Push NuGet package
