@@ -46,7 +46,6 @@ namespace FactoryBot.Tests.Generators.Strings
                 x => new AllTypesModel { String = x.Network.Url(UriKind.Absolute, 5, 10, 0, 0, Uri.UriSchemeHttp, null!) },
                 x =>
                 {
-                    Console.WriteLine(x);
                     Assert.That(Uri.IsWellFormedUriString(x, UriKind.Absolute));
                     var path = new Uri(x).PathAndQuery;
                     Assert.That(path, Is.Not.Contain("?"));
