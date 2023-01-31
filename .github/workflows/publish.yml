@@ -32,7 +32,7 @@ jobs:
       working-directory: ./src
 
     - name: Pack NuGet package
-      run: dotnet pack -p:PackageVersion=$VERSION --configuration Release --no-build
+      run: dotnet pack -p:PackageVersion=${{ env.name }} --configuration Release --no-build
       working-directory: ./src/FactoryBot    
 
     - name: Push NuGet package
