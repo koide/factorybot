@@ -21,7 +21,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '3.1.100'
+        dotnet-version: '6'
         
     - name: Build code
       run: dotnet build --configuration Release 
@@ -33,8 +33,8 @@ jobs:
 
     - name: Pack NuGet package
       run: dotnet pack -p:PackageVersion=$VERSION --configuration Release --no-build
-      working-directory: ./src/FactoryBot
+      working-directory: ./src/FactoryBot    
 
     - name: Push NuGet package
-      run: dotnet nuget push **/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push **/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/koide/index.json
       working-directory: ./src/FactoryBot
