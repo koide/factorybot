@@ -36,5 +36,5 @@ jobs:
       working-directory: ./src/FactoryBot    
 
     - name: Push NuGet package
-      run: dotnet nuget push **/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/koide/index.json
+      run: dotnet nuget push **/*.nupkg -k ${{ secrets.WRITE_PAT }} -s https://nuget.pkg.github.com/koide/index.json
       working-directory: ./src/FactoryBot
