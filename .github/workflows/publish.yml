@@ -11,7 +11,7 @@ jobs:
     
     steps:
     - name: Get version
-      run: version=$(echo "$GITHUB_REF" | sed 's/^refs\/tags\/v//g');echo "::set-env name=VERSION::$version"
+      run: version=$(echo "$GITHUB_REF" | sed 's/^refs\/tags\/v//g');echo "name=VERSION::$version" >> $GITHUB_ENV
       env:
         GITHUB_REF: ${{ github.ref }}
 
